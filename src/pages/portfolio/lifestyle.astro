@@ -1,0 +1,47 @@
+---
+import GalleryGrid from "../../components/GalleryGrid.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+
+const images = [
+	{
+		src: "/images/lifestyle-sample-01.webp",
+		alt: "Quatre amis de dos, les bras autour des épaules, face au soleil couchant.",
+	},
+	{
+		src: "/images/lifestyle-sample-02.webp",
+		alt: "Quatre amis rient ensemble à l’intérieur autour d’un café.",
+	},
+	{
+		src: "/images/lifestyle-sample-03.webp",
+		alt: "Deux femmes se prennent dans les bras sur une plage.",
+	},
+];
+---
+
+<SiteLayout
+	title="Lifestyle — Portfolio"
+	description="Série de photographies lifestyle de démonstration."
+>
+	<main id="contenu" class="gallery-page">
+		<nav class="breadcrumbs" aria-label="Fil d’Ariane">
+			<a href="/">Accueil</a>
+			<span aria-hidden="true">/</span>
+			<a href="/portfolio/">Portfolio</a>
+			<span aria-hidden="true">/</span>
+			<span aria-current="page">Lifestyle</span>
+		</nav>
+
+		<header class="gallery-page-header">
+			<p class="eyebrow">Série 03 · Images temporaires</p>
+			<h1>Lifestyle</h1>
+			<p>Une sélection d’instants du quotidien pour la maquette du portfolio.</p>
+		</header>
+
+		<GalleryGrid images={images} />
+		<p class="gallery-note">
+			Ces photographies sont des visuels de démonstration et ne représentent
+			pas le travail du photographe du projet.
+		</p>
+		<a class="text-link gallery-back" href="/portfolio/">Toutes les séries <span aria-hidden="true">↗</span></a>
+	</main>
+</SiteLayout>

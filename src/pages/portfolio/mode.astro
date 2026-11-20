@@ -1,0 +1,53 @@
+---
+import GalleryGrid from "../../components/GalleryGrid.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+
+const images = [
+	{
+		src: "/images/fashion-sample-01.webp",
+		alt: "Femme portant des lunettes de soleil et un haut rouge en extérieur.",
+	},
+	{
+		src: "/images/fashion-sample-02.webp",
+		alt: "Modèle en tailleur blanc tenant une rose rouge.",
+	},
+	{
+		src: "/images/fashion-sample-03.webp",
+		alt: "Portrait en noir et blanc d’une femme en tailleur et portant des bijoux.",
+	},
+];
+---
+
+<SiteLayout
+	title="Mode — Portfolio"
+	description="Série de photographies de mode de démonstration."
+>
+	<main id="contenu" class="gallery-page">
+		<nav class="breadcrumbs" aria-label="Fil d’Ariane">
+			<a href="/">Accueil</a>
+			<span aria-hidden="true">/</span>
+			<a href="/portfolio/">Portfolio</a>
+			<span aria-hidden="true">/</span>
+			<span aria-current="page">Mode</span>
+		</nav>
+
+		<header class="gallery-page-header">
+			<p class="eyebrow">Série 02 · Images temporaires</p>
+			<h1>Mode</h1>
+			<p>Une sélection de photographies de mode pour la maquette du portfolio.</p>
+		</header>
+
+		<GalleryGrid images={images} />
+		<p class="gallery-credit">
+			Crédit demandé par l’autrice :
+			<a href="https://unsplash.com/photos/woman-wearing-white-blazer-IXYxqP4zejo">
+				Aiony Haust — Unsplash
+			</a>.
+		</p>
+		<p class="gallery-note">
+			Ces photographies sont des visuels de démonstration et ne représentent
+			pas le travail du photographe du projet.
+		</p>
+		<a class="text-link gallery-back" href="/portfolio/">Toutes les séries <span aria-hidden="true">↗</span></a>
+	</main>
+</SiteLayout>

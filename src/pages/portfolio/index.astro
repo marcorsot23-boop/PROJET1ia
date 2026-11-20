@@ -1,0 +1,69 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+
+const series = [
+	{
+		href: "/portfolio/portraits/",
+		title: "Portraits",
+		description: "Des visages et des personnalités.",
+		image: "/images/portrait-demo.webp",
+	},
+	{
+		href: "/portfolio/mode/",
+		title: "Mode",
+		description: "Des silhouettes et des histoires de style.",
+		image: "/images/fashion-sample-03.webp",
+	},
+	{
+		href: "/portfolio/lifestyle/",
+		title: "Lifestyle",
+		description: "Des instants capturés au fil du quotidien.",
+		image: "/images/lifestyle-sample-01.webp",
+	},
+];
+---
+
+<SiteLayout
+	title="Portfolio — Photographe"
+	description="Séries photographiques de démonstration : portraits, mode et lifestyle."
+>
+	<main id="contenu" class="portfolio-page">
+		<nav class="breadcrumbs" aria-label="Fil d’Ariane">
+			<a href="/">Accueil</a>
+			<span aria-hidden="true">/</span>
+			<span aria-current="page">Portfolio</span>
+		</nav>
+
+		<header class="gallery-page-header">
+			<p class="eyebrow">Portfolio · Projet de démonstration</p>
+			<h1>Les séries</h1>
+			<p>
+				Choisissez une série pour découvrir sa sélection d’images. Tous les
+				visuels présents ici sont temporaires.
+			</p>
+		</header>
+
+		<div class="category-grid">
+			{
+				series.map((item, index) => (
+					<a class="category-card" href={item.href}>
+						<img
+							class="category-card__image"
+							src={item.image}
+							width="1000"
+							height="1250"
+							alt=""
+							loading="lazy"
+							decoding="async"
+						/>
+						<span class="category-card__number">
+							{String(index + 1).padStart(2, "0")}
+						</span>
+						<span class="category-card__title">{item.title}</span>
+						<span class="category-card__note">{item.description}</span>
+					</a>
+				))
+			}
+		</div>
+	</main>
+</SiteLayout>

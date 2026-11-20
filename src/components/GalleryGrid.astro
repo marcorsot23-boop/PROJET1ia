@@ -1,0 +1,106 @@
+---
+interface GalleryImage {
+	src: string;
+	alt: string;
+}
+
+interface Props {
+	images: GalleryImage[];
+}
+
+const { images } = Astro.props;
+---
+
+<div data-gallery>
+	<div class="gallery-grid">
+		{
+			images.map((image, index) => (
+				<figure class="gallery-item">
+					<a
+						class="gallery-trigger"
+						href={image.src}
+						aria-label={`Agrandir : ${image.alt}`}
+						data-lightbox-trigger
+					>
+						<img
+							src={image.src}
+							width="1000"
+							height="1250"
+							alt={image.alt}
+							loading={index === 0 ? "eager" : "lazy"}
+							decoding="async"
+						/>
+					</a>
+				</figure>
+			))
+		}
+	</div>
+	<p class="gallery-credit">Images de démonstration provenant d’Unsplash.</p>
+
+	<dialog class="lightbox" aria-labelledby="lightbox-title" data-lightbox>
+		<h2 class="visually-hidden" id="lightbox-title">Image agrandie</h2>
+		<button
+			class="lightbox__close"
+			type="button"
+			aria-label="Fermer l’image agrandie"
+			data-lightbox-close
+		>
+			<span aria-hidden="true">×</span>
+		</button>
+		<figure class="lightbox__figure">
+			<img class="lightbox__image" alt="" data-lightbox-image />
+			<figcaption>Image de démonstration — Unsplash</figcaption>
+		</figure>
+	</dialog>
+</div>
+
+<script>
+	const gallery = document.querySelector<HTMLElement>("[data-gallery]");
+	const lightbox = gallery?.querySelector<HTMLDialogElement>("[data-lightbox]");
+	const expandedImage = lightbox?.querySelector<HTMLImageElement>(
+		"[data-lightbox-image]",
+	);
+	const closeButton = lightbox?.querySelector<HTMLButtonElement>(
+		"[data-lightbox-close]",
+	);
+
+	if (!gallery || !lightbox || !expandedImage || !closeButton) {
+		throw new Error("La galerie ne contient pas les éléments requis pour la lightbox.");
+	}
+
+	gallery.addEventListener("click", (event) => {
+		if (!(event.target instanceof Element)) {
+			return;
+		}
+
+		const trigger = event.target.closest<HTMLAnchorElement>(
+			"[data-lightbox-trigger]",
+		);
+		if (!trigger) {
+			return;
+		}
+
+		const image = trigger.querySelector<HTMLImageElement>("img");
+		if (!image) {
+			throw new Error("Le lien d’agrandissement ne contient pas d’image.");
+		}
+
+		event.preventDefault();
+		expandedImage.src = image.currentSrc || image.src;
+		expandedImage.alt = image.alt;
+		lightbox.showModal();
+	});
+
+	closeButton.addEventListener("click", () => lightbox.close());
+	lightbox.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") {
+			event.preventDefault();
+			lightbox.close();
+		}
+	});
+	lightbox.addEventListener("click", (event) => {
+		if (event.target === lightbox) {
+			lightbox.close();
+		}
+	});
+</script>

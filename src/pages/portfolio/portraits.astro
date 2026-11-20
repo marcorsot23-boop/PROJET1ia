@@ -1,0 +1,47 @@
+---
+import GalleryGrid from "../../components/GalleryGrid.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+
+const images = [
+	{
+		src: "/images/portrait-demo.webp",
+		alt: "Portrait de démonstration d’une femme de profil, éclairée sur fond sombre.",
+	},
+	{
+		src: "/images/portrait-sample-02.webp",
+		alt: "Portrait en noir et blanc d’une femme portant un haut sombre.",
+	},
+	{
+		src: "/images/portrait-sample-03.webp",
+		alt: "Portrait rapproché d’une femme aux cheveux attachés.",
+	},
+];
+---
+
+<SiteLayout
+	title="Portraits — Portfolio"
+	description="Série de portraits photographiques de démonstration."
+>
+	<main id="contenu" class="gallery-page">
+		<nav class="breadcrumbs" aria-label="Fil d’Ariane">
+			<a href="/">Accueil</a>
+			<span aria-hidden="true">/</span>
+			<a href="/portfolio/">Portfolio</a>
+			<span aria-hidden="true">/</span>
+			<span aria-current="page">Portraits</span>
+		</nav>
+
+		<header class="gallery-page-header">
+			<p class="eyebrow">Série 01 · Images temporaires</p>
+			<h1>Portraits</h1>
+			<p>Une sélection de portraits utilisée pour la maquette du portfolio.</p>
+		</header>
+
+		<GalleryGrid images={images} />
+		<p class="gallery-note">
+			Ces photographies sont des visuels de démonstration et ne représentent
+			pas le travail du photographe du projet.
+		</p>
+		<a class="text-link gallery-back" href="/portfolio/">Toutes les séries <span aria-hidden="true">↗</span></a>
+	</main>
+</SiteLayout>
