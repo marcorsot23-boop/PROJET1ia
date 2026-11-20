@@ -29,6 +29,17 @@ Si PowerShell bloque la commande `npm` à cause de sa politique d’exécution,
 utilisez `npm.cmd` à la place pour chaque commande : `npm.cmd ci`,
 `npm.cmd run dev`, `npm.cmd run build` et `npm.cmd run preview`.
 
+## Dépôt GitHub
+
+Le code source est publié sur GitHub : [marcorsot23-boop/PROJET1ia](https://github.com/marcorsot23-boop/PROJET1ia).
+
+Pour récupérer le projet avec Git :
+
+```powershell
+git clone https://github.com/marcorsot23-boop/PROJET1ia.git
+cd PROJET1ia
+```
+
 ## Structure
 
 ```text
@@ -65,4 +76,3 @@ public/
 - Remplacer « Nom du photographe » et compléter la biographie, la ville et les coordonnées après validation.
 - Remplacer les images de démonstration Unsplash par les photographies autorisées du client. Les listes d’images se trouvent dans les pages de série sous `src/pages/portfolio/`.
 - La page Contact ne contient pas encore de formulaire actif. Il faudra choisir les coordonnées et, si un formulaire est souhaité, son service de traitement.
-- Le dépôt Git est local ; aucun dépôt GitHub ni projet Vercel n’est configuré dans ce dépôt à ce stade.
