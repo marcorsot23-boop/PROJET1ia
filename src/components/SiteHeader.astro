@@ -1,3 +1,9 @@
+---
+const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const isPortfolioPage =
+	pathname === "/portfolio" || pathname.startsWith("/portfolio/");
+---
+
 <header class="site-header">
 	<a class="site-brand" href="/" aria-label="Retour à l’accueil">
 		<span class="site-brand__name">Nom du photographe</span>
@@ -5,8 +11,15 @@
 	</a>
 
 	<nav class="site-nav" aria-label="Navigation principale">
-		<a href="/portfolio/">Portfolio</a>
-		<a href="/a-propos/">À propos</a>
-		<a class="site-nav__contact" href="/contact/">Contact</a>
+		<a href="/portfolio/" aria-current={isPortfolioPage ? "page" : undefined}>Portfolio</a>
+		<a href="/a-propos/" aria-current={pathname === "/a-propos" ? "page" : undefined}>À propos</a>
+		<a href="/contact/" aria-current={pathname === "/contact" ? "page" : undefined}>Contact</a>
 	</nav>
 </header>
+
+<style>
+	.site-nav a[aria-current="page"] {
+		border-bottom: 1px solid currentColor;
+		padding-bottom: 0.2rem;
+	}
+</style>
